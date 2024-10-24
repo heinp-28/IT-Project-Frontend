@@ -132,7 +132,11 @@ const Entries = () => {
                 const res = await axios.get("http://3.25.210.17:8800/entries");
                 setEntries(res.data);
             } catch (err) {
-                console.log(err);
+                console.log("Error details:", {
+                    message: err.message,
+                    response: err.response?.data,
+                    status: err.response?.status
+                });
             }
         };
         fetchAllEntries();
