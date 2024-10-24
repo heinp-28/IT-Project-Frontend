@@ -106,7 +106,7 @@ const Entries = () => {
     useEffect(() => {
         const fetchComments = async () => {
         try {
-            const res = await axios.get("http://3.107.174.83/comments");
+            const res = await axios.get("http://3.107.174.83:8800/comments");
             const commentsData = {};
             res.data.forEach(comment => {
             // Access Entry_id from the comment object
@@ -129,7 +129,7 @@ const Entries = () => {
     useEffect(() => {
         const fetchAllEntries = async () => {
             try {
-                const res = await axios.get("http://3.107.174.83/entries");
+                const res = await axios.get("http://3.107.174.83:8800/entries");
                 setEntries(res.data);
             } catch (err) {
                 console.log(err);
@@ -240,7 +240,7 @@ const Entries = () => {
         
         // Update mysql database by sending an api request
         try {
-            const res = await axios.put("http://3.107.174.83/assign", {
+            const res = await axios.put("http://3.107.174.83:8800/assign", {
                 assignedId: userID,
                 assignedTo: assignedUserName,
                 selectedEntryIds: Array.from(selectedEntries)
@@ -248,7 +248,7 @@ const Entries = () => {
             alert(res.data);
 
             // Refresh the page after assigning etnries
-            const updatedEntries = await axios.get("http://3.107.174.83/entries");
+            const updatedEntries = await axios.get("http://3.107.174.83:8800/entries");
             setEntries(updatedEntries.data);
         } catch (error) {
             console.error("Error assigning entries:", error);
@@ -267,7 +267,7 @@ const Entries = () => {
             const formattedDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
             // Send a POST request to your API to add the comment
-            const res = await axios.post("http://3.107.174.83/comments", {
+            const res = await axios.post("http://3.107.174.83:8800/comments", {
                 Entry_id: entryId,
                 Comment: newComment,
                 Commenter: assignedUserName,
@@ -299,7 +299,7 @@ const Entries = () => {
     // Updated handleStatusChange function to properly update entry status
     const handleStatusChange = useCallback(async (entryId, newStatus) => {
         try {
-            await axios.put(`http://3.107.174.83/update-status/${entryId}`, { 
+            await axios.put(`http://3.107.174.83:8800/update-status/${entryId}`, { 
                 status: newStatus 
             });
             
@@ -334,13 +334,13 @@ const Entries = () => {
         }
     
         try {
-            const res = await axios.put("http://3.107.174.83/unassign", {
+            const res = await axios.put("http://3.107.174.83:8800/unassign", {
                 selectedEntryIds: Array.from(selectedEntries)
             });
             alert(res.data);
     
             // Refresh the page after unassigning entries
-            const updatedEntries = await axios.get("http://3.107.174.83/entries");
+            const updatedEntries = await axios.get("http://3.107.174.83:8800/entries");
             setEntries(updatedEntries.data);
         } catch (error) {
             console.error("Error unassigning entries:", error);
