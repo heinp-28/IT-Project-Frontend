@@ -1,0 +1,76 @@
+.user-management-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 800px;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-management-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #004e8c;
+    background-image: url('/public/ADB_logo.jpeg');
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: round;
+    height: 100%;
+    width: 100%;
+    animation: scrollBackground 50s linear infinite;
+    z-index: -2;
+}
+
+.user-management-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Darkening effect */
+    backdrop-filter: blur(16px); /* Blur effect */
+    z-index: -1;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title {
+    color: white;
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.add-user-button {
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+/* NextUI overrides */
+.nextui-table-container {
+    background-color: rgb(238, 238, 238);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.nextui-table-header-column {
+    background-color: rgb(211, 211, 211);
+    font-weight: bold;
+}
+
+.nextui-table-cell {
+    padding: 12px;
+}
+
+.nextui-button {
+    margin: 5px;
+}

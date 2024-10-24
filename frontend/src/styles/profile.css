@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #004e8c;
+    background-image: url('/public/ADB_logo.jpeg');
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: round;
+    height: 100%;
+    width: 100%;
+    animation: scrollBackground 50s linear infinite;
+    z-index: -2;
+}
+
+.profile-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Darkening effect */
+    backdrop-filter: blur(10px); /* Blur effect */
+    z-index: -1;
+}
+
+.top-bar, .bottom-bar {
+    background-color: rgb(238, 238, 238);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    min-height: 40px;
+    position: relative; /* Add this to ensure it's above the background */
+    z-index: 1; /* Add this to ensure it's above the background */
+}
+
+.title-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px; /* Adjust the size as needed */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.section {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgb(238, 238, 238);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.name-role {
+    margin-left: 20px;
+    width: 100%;
+}
+
+.name-inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.name-input {
+    flex: 1;
+}
+
+.role {
+    font-size: 18px;
+    color: #666;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.info-row {
+    margin-bottom: 15px;
+}
+
+.card-footer {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.name-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+}
+
+.role-text {
+    font-size: 18px;
+    color:rgb(111, 111, 111);
+}
+
+@keyframes scrollBackground {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: -100vw 0;
+    }
+  }
