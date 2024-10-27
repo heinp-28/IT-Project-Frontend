@@ -10,7 +10,6 @@ import './../styles/usermanagement.css';
 
 const roleOptions = ["Head Director", "Senior Editor", "Editor", "Intern"];
 
-// Initialize a secondary Firebase app for account creation.
 const firebaseConfig = {
   apiKey: "AIzaSyDc0X-cDET2SytWcAtrPphnv1TSVHY10UY",
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -98,24 +97,22 @@ export default function UserManagement() {
             setNewPassword('');
             setNewGivenName('');
             setNewFamilyName('');
-            fetchUsers(); // Refresh the user list
+            fetchUsers();
         } catch (error) {
             console.error('Error adding new user:', error);
             alert('Failed to add new user. Please try again.');
         }
     };
 
-    // Delete user from firestore. However, complete deletion of account is only possible on firebase console for security reason.
     const handleDeleteUser = async (userId) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
             try {
-                // Delete user document from Firestore
                 await deleteDoc(doc(db, 'users', userId));
                 
                 console.log(`User document for ${userId} deleted from Firestore.`);
                 alert('User document deleted from Firestore. For complete user deletion, manually delete the account in firebase console.');
                 
-                fetchUsers(); // Refresh the user list
+                fetchUsers();
             } catch (error) {
                 console.error('Error deleting user document:', error);
                 alert('Failed to delete user document. Please try again.');
@@ -154,7 +151,6 @@ export default function UserManagement() {
         return <div>Loading...</div>;
     }
 
-    // Rendering the user management page
     return (
         <div className="user-management-container">
             <div className="top-bar">
@@ -189,19 +185,14 @@ export default function UserManagement() {
                     <TableColumn>Role</TableColumn>
                     <TableColumn>Email</TableColumn>
                     <TableColumn>Phone Number</TableColumn>
+                    <TableColumn>Gender</TableColumn>
                     <TableColumn>Actions</TableColumn>
                 </TableHeader>
                 <TableBody>
                     {users.map((user) => (
                         <TableRow key={user.id}>
                             <TableCell>
-                                <Button
-                                    light
-                                    variant="light"
-                                    onClick={() => navigate(`/profile/${user.id}`)}
-                                >
-                                    {`${user.givenName} ${user.familyName}`}
-                                </Button>
+                                {`${user.givenName} ${user.familyName}`}
                             </TableCell>
                             <TableCell>
                                 <Dropdown>
@@ -221,6 +212,7 @@ export default function UserManagement() {
                             </TableCell>
                             <TableCell>{user.email}</TableCell>
                             <TableCell>{user.phoneNumber}</TableCell>
+                            <TableCell>{user.gender}</TableCell>
                             <TableCell>
                                 <Button
                                     color="danger"
@@ -238,7 +230,6 @@ export default function UserManagement() {
             </div>
             <div className="bottom-bar"></div>
 
-            {/* Modal popup to intake necessary information for new account creation */}
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
